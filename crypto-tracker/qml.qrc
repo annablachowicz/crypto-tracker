@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Components/CryptoLabel/CryptoLabel.qml</file>
+        <file>Components/CryptoLabel/CutCornersRectangle.qml</file>
+        <file>Components/CryptoLabel/CutCornersRectangleWithBorder.qml</file>
+    </qresource>
+</RCC>
