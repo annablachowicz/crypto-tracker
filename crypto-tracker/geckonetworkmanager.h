@@ -11,8 +11,9 @@ public:
 private:
     std::shared_ptr<QNetworkAccessManager> m_networkManger;
 
-
 private slots:
     void replyFinished(QNetworkReply *reply);
 
+signals:
+    void newDataReceived(QByteArray newData);
 };
