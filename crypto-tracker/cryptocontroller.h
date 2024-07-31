@@ -7,11 +7,13 @@
 
 class CryptoController : public QObject {
     Q_OBJECT
+
 public:
     CryptoController(QObject *parent = nullptr);
+    CryptoModel* cryptoModel();
 
 private:
     CryptoParser m_parser;
-    CryptoModel m_model;
+    std::shared_ptr<CryptoModel> m_model;
     GeckoNetworkManager m_networkManager;
 };

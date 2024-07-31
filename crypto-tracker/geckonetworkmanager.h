@@ -6,7 +6,7 @@ class GeckoNetworkManager : public QObject {
     Q_OBJECT
 
 public:
-    explicit GeckoNetworkManager(QObject *parent = nullptr);
+    GeckoNetworkManager(QObject *parent = nullptr);
     void getCoinData();
 
 private:

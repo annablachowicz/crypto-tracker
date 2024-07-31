@@ -18,7 +18,7 @@ public:
         PriceChangePercentage1hRole
     };
 
-    explicit CryptoModel(QObject *parent = nullptr);
+    CryptoModel(QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     void reset();

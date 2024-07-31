@@ -1,5 +1,5 @@
 #include "cryptomodel.h"
-//#include <QDebug>
+#include <QDebug>
 
 CryptoModel::CryptoModel(QObject *parent)
     : QAbstractListModel(parent) {}
@@ -34,8 +34,9 @@ QVariant CryptoModel::data(const QModelIndex &index, int role) const {
 }
 
 void CryptoModel::add(const CryptoData cryptoData) {
-//    qDebug() << "ADDING CRYPTO DATA TO MODEL";
+    beginInsertRows(QModelIndex(), m_cryptoDatas.size(), m_cryptoDatas.size());
     m_cryptoDatas.push_back(cryptoData);
+    endInsertRows();
 }
 
 void CryptoModel::reset() {
@@ -54,4 +55,5 @@ QHash<int, QByteArray> CryptoModel::roleNames() const {
     roles[PriceChangePercentage24hRole] = "priceChange24h";
     roles[PriceChangePercentage1hRole] = "priceChange1h";
 
+    return roles;
 }

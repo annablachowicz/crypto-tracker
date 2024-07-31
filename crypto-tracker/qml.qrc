@@ -4,5 +4,7 @@
         <file>Components/CryptoLabel/CryptoLabel.qml</file>
         <file>Components/CryptoLabel/CutCornersRectangle.qml</file>
         <file>Components/CryptoLabel/CutCornersRectangleWithBorder.qml</file>
+        <file>CoinsView.qml</file>
+        <file>CoinsViewForm.ui.qml</file>
     </qresource>
 </RCC>
