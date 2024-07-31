@@ -1,3 +1,4 @@
+#pragma once
 #include <QNetworkAccessManager>
 #include <QObject>
 
@@ -5,7 +6,7 @@ class GeckoNetworkManager : public QObject {
     Q_OBJECT
 
 public:
-    GeckoNetworkManager(QObject *parent = nullptr);
+    explicit GeckoNetworkManager(QObject *parent = nullptr);
     void getCoinData();
 
 private:

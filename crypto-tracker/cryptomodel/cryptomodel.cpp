@@ -1,4 +1,5 @@
-#include "cryptoModel.h"
+#include "cryptomodel.h"
+//#include <QDebug>
 
 CryptoModel::CryptoModel(QObject *parent)
     : QAbstractListModel(parent) {}
@@ -33,6 +34,7 @@ QVariant CryptoModel::data(const QModelIndex &index, int role) const {
 }
 
 void CryptoModel::add(const CryptoData cryptoData) {
+//    qDebug() << "ADDING CRYPTO DATA TO MODEL";
     m_cryptoDatas.push_back(cryptoData);
 }
 

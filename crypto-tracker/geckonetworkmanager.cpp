@@ -5,7 +5,8 @@
 
 constexpr const char* geckoApiKey = "CG-T1xp7PtrAKvWJd8L5PEY74WD";
 
-GeckoNetworkManager::GeckoNetworkManager(QObject *parent) {
+GeckoNetworkManager::GeckoNetworkManager(QObject *parent)
+    : QObject(parent) {
     m_networkManger = std::make_shared<QNetworkAccessManager>(this);
     connect(m_networkManger.get(), &QNetworkAccessManager::finished, this, &GeckoNetworkManager::replyFinished);
 }
@@ -33,8 +34,7 @@ void GeckoNetworkManager::replyFinished(QNetworkReply *reply) {
     qDebug("REPLY RECEIVED");
     qDebug("network error: ");
     qDebug() << reply->error(); // static_cast<int>(reply->error());
-    qDebug() << reply->readAll();
-
+    qDebug() << "emit newDataReceived";
     emit newDataReceived(reply->readAll());
 
 }

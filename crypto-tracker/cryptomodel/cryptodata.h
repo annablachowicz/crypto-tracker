@@ -1,3 +1,4 @@
+#pragma once
 #include <QObject>
 
 class CryptoData {
@@ -16,6 +17,6 @@ public:
     QString ticker;
     QString currency;
     float price;
-    float priceChangePercentage24h; //    price_change_percentage_24h
-    float priceChangePercentage1h; //    price_change_percentage_1h
+    float priceChangePercentage24h;
+    float priceChangePercentage1h;
 };

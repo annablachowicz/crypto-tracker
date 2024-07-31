@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "geckonetworkmanager.h"
+#include "cryptocontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,8 +18,7 @@ int main(int argc, char *argv[])
         }, Qt::QueuedConnection);
     engine.load(url);
 
-    GeckoNetworkManager mmm;
-    mmm.getCoinData();
+    CryptoController controller;
 
     return app.exec();
 }
