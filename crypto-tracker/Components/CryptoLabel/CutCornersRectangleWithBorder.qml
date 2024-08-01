@@ -1,8 +1,9 @@
 import QtQuick 2.15
+import CustomColors 1.0
 
 CutCornersRectangle {
-    property color borderColor: "black"
-    property color color: "white"
+    property color borderColor: Colors.mediumBackground
+    property color color: Colors.lightBackground
     fillColor: borderColor
 
     CutCornersRectangle {

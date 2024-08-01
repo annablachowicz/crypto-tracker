@@ -11,12 +11,15 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    engine.addImportPath("qrc:/");
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     CryptoController controller;
 
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("cryptoModel", controller.cryptoModel());
+    qmlRegisterUncreatableMetaObject(CryptoColumnIndices::staticMetaObject, "CryptoColumnIndices", 1, 0, "CryptoColumnIndices", "Error: only enums");
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {

@@ -30,7 +30,7 @@ CutCornersRectangleWithBorder {
         ColumnLayout {
             anchors.left: cryptoLogo.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: parent.height * 0.1
+            anchors.leftMargin: parent.height * 0.2
 
             Row {
                 spacing: 20
@@ -40,6 +40,8 @@ CutCornersRectangleWithBorder {
                 }
                 Label {
                     id: ticker
+                    color: "grey"
+                    font.capitalization: Font.AllUppercase
                 }
             }
 

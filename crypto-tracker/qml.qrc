@@ -6,5 +6,9 @@
         <file>Components/CryptoLabel/CutCornersRectangleWithBorder.qml</file>
         <file>CoinsView.qml</file>
         <file>CoinsViewForm.ui.qml</file>
+        <file>Components/Sidebar/Sidebar.qml</file>
+        <file>CustomColors/Colors.qml</file>
+        <file>CustomColors/qmldir</file>
+        <file>Components/Sidebar/SidebarForm.ui.qml</file>
     </qresource>
 </RCC>

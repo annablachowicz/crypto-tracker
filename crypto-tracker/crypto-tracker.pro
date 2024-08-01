@@ -15,8 +15,9 @@ RESOURCES += qml.qrc
 
 LD_LIBRARY_PATH=/usr/local/lib
 
+QML_IMPORT_PATH += $$PWD
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH += $$PWD/CustomColors
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
