@@ -3,7 +3,14 @@
 
 class CryptoData {
 public:
-    CryptoData(QString _name, QString _image, QString _ticker, QString _currency, float _price, float _priceChangePercentage24h, float _priceChangePercentage1h, int _rank)
+    CryptoData(QString _name,
+               QString _image,
+               QString _ticker,
+               QString _currency,
+               float _price,
+               float _priceChangePercentage24h,
+               float _priceChangePercentage1h,
+               int _rank)
         : name(std::move(_name)),
         image(std::move(_image)),
         ticker(std::move(_ticker)),
@@ -12,6 +19,8 @@ public:
         priceChangePercentage24h(std::move(_priceChangePercentage24h)),
         priceChangePercentage1h(std::move(_priceChangePercentage1h)),
         rank(_rank) {}
+
+    CryptoData() {}
 
     QString name;
     QString image;
@@ -22,3 +31,4 @@ public:
     float priceChangePercentage1h;
     int rank;
 };
+Q_DECLARE_METATYPE(CryptoData);
