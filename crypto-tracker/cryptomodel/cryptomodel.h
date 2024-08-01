@@ -39,6 +39,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     Q_INVOKABLE void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
+    void defaultSort();
     void reset();
 
 public slots:
@@ -47,4 +48,7 @@ public slots:
 protected:
     QHash<int, QByteArray> roleNames() const override;
     QList<CryptoData> m_cryptoDatas;
+
+private:
+    int m_sortColumn = CryptoColumnIndices::RankColumn;
 };

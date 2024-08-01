@@ -8,9 +8,13 @@ class GeckoNetworkManager : public QObject {
 
 public:
     GeckoNetworkManager(QObject *parent = nullptr);
-    void getCoinData();
+
 private:
-        QNetworkAccessManager m_networkManger;
+    QNetworkAccessManager m_networkManger;
+
+public slots:
+    void getCoinData();
+
 private slots:
     void replyFinished(QNetworkReply *reply);
 

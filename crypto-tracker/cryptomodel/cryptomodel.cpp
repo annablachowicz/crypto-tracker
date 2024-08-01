@@ -36,6 +36,10 @@ QVariant CryptoModel::data(const QModelIndex &index, int role) const {
 }
 
 void CryptoModel::sort(int column, Qt::SortOrder order) {
+    if (m_sortColumn != column) {
+        m_sortColumn = column;
+    }
+
     beginInsertRows(QModelIndex(), 0, m_cryptoDatas.size()-1);
 
     switch (column) {
@@ -62,6 +66,10 @@ void CryptoModel::sort(int column, Qt::SortOrder order) {
     }
 
     endInsertRows();
+}
+
+void CryptoModel::defaultSort() {
+    sort(m_sortColumn);
 }
 
 void CryptoModel::add(const CryptoData cryptoData) {
