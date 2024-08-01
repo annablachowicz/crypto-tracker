@@ -17,4 +17,5 @@ private slots:
 
 signals:
     void newDataReceived(QByteArray newData);
+    void errorMessageReceived(int errorCode, QString errorMessage);
 };

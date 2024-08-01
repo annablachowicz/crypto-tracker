@@ -35,6 +35,9 @@ void GeckoNetworkManager::replyFinished(QNetworkReply *reply) {
     qDebug("network error: ");
     qDebug() << reply->error(); // static_cast<int>(reply->error());
     qDebug() << "emit newDataReceived";
-    emit newDataReceived(reply->readAll());
 
+    if (reply->error() == QNetworkReply::NoError) {
+        emit newDataReceived(reply->readAll());
+    }
+    emit errorMessageReceived(static_cast<int>(reply->error()), reply->errorString());
 }

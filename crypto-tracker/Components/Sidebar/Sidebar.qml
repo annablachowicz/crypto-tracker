@@ -1,27 +1,14 @@
 import QtQuick 2.15
-import CryptoColumnIndices 1.0
 
 SidebarForm {
-    signal sortCoins(index: int)
+    sortControl.onSortCoins: coinsView.model.sort(index)
 
-    rankingButton.onCheckedChanged: {
-        if (rankingButton.checked) {
-            sortCoins(CryptoColumnIndices.RankColumn)
+    Connections {
+        target: cryptoController
+        function onErrorMessageReceived(errorCode, errorMessage) {
+            networkErrorLabel.text = errorMessage
+            networkErrorLabel.visible = errorCode !== 0
         }
     }
-    priceButton.onCheckedChanged: {
-        if (priceButton.checked) {
-            sortCoins(CryptoColumnIndices.PriceColumn)
-        }
-    }
-    change24hButton.onCheckedChanged: {
-        if (change24hButton.checked) {
-            sortCoins(CryptoColumnIndices.PriceChangePercentage24hColumn)
-        }
-    }
-    nameButton.onCheckedChanged: {
-        if (nameButton.checked) {
-            sortCoins(CryptoColumnIndices.NameColumn)
-        }
-    }
+
 }

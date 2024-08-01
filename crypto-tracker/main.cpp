@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     CryptoController controller;
 
     QQmlContext *context = engine.rootContext();
+    context->setContextProperty("cryptoController", &controller);
     context->setContextProperty("cryptoModel", controller.cryptoModel());
     qmlRegisterUncreatableMetaObject(CryptoColumnIndices::staticMetaObject, "CryptoColumnIndices", 1, 0, "CryptoColumnIndices", "Error: only enums");
 
