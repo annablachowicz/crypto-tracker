@@ -14,13 +14,11 @@ void CryptoParser::parseReply(QByteArray newData) {
         CryptoData cryptoData(value["name"].toString(),
                               value["image"].toString(),
                               value["symbol"].toString(),
-                              "USD", // todo zapisać w zmiennej
+                              currency,
                               value["price"].toDouble(),
                               value["price_change_percentage_24h"].toDouble(),
                               value["price_change_percentage_1h"].toDouble(),
                               value["market_cap_rank"].toInt());
         emit dataRead(cryptoData);
     }
-
-    emit parsingFinished();
 }

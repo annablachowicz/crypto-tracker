@@ -28,7 +28,6 @@ private:
 private slots:
     void onNewDataReceived(QByteArray newData);
     void onErrorMessageReceived(int errorCode, QString errorMessage);
-    void onParsingFinished();
 
 signals:
     void errorMessageReceived(int errorCode, QString errorMessage);

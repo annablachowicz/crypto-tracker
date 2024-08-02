@@ -3,6 +3,8 @@
 #include <QObject>
 #include "cryptomodel/cryptodata.h"
 
+constexpr const char* currency = "USD";
+
 class CryptoParser : public QObject {
     Q_OBJECT
 public:
@@ -12,5 +14,4 @@ public slots:
     void parseReply(QByteArray newData);
 signals:
     void dataRead(const CryptoData data);
-    void parsingFinished();
 };

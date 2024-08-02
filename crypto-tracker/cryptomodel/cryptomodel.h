@@ -25,7 +25,8 @@ class CryptoModel : public QAbstractListModel {
 
 public:
     enum CryptoRoles {
-        NameRole = Qt::UserRole + 1,
+        IdRole = Qt::UserRole + 1,
+        NameRole,
         ImageRole,
         TickerRole,
         CurrencyRole,
@@ -38,12 +39,13 @@ public:
     CryptoModel(QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     Q_INVOKABLE void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
-    void defaultSort();
+    void add(const CryptoData cryptoData);
     void reset();
 
 public slots:
-    void add(const CryptoData cryptoData);
+    void addOrUpdate(const CryptoData &value);
 
 protected:
     QHash<int, QByteArray> roleNames() const override;

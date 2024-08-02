@@ -35,6 +35,43 @@ QVariant CryptoModel::data(const QModelIndex &index, int role) const {
     }
 }
 
+bool CryptoModel::setData(const QModelIndex &index, const QVariant &value, int role) {
+    CryptoData &cryptoData = m_cryptoDatas[index.row()];
+    switch (role) {
+    case ImageRole:
+        cryptoData.image = value.toString();
+        emit dataChanged(index, index);
+        return true;
+    case TickerRole:
+        cryptoData.ticker = value.toString();
+        emit dataChanged(index, index);
+        return true;
+    case CurrencyRole:
+        cryptoData.currency = value.toString();
+        emit dataChanged(index, index);
+        return true;
+    case PriceRole:
+        cryptoData.price = value.toFloat();
+        emit dataChanged(index, index);
+        return true;
+    case PriceChangePercentage24hRole:
+        cryptoData.priceChangePercentage24h = value.toFloat();
+        emit dataChanged(index, index);
+        return true;
+    case PriceChangePercentage1hRole:
+        cryptoData.priceChangePercentage1h = value.toFloat();
+        emit dataChanged(index, index);
+        return true;
+    case RankRole:
+        cryptoData.rank = value.toFloat();
+        emit dataChanged(index, index);
+        return true;
+    default:
+        return false;
+    }
+
+}
+
 void CryptoModel::sort(int column, Qt::SortOrder order) {
     if (m_sortColumn != column) {
         m_sortColumn = column;
@@ -68,8 +105,21 @@ void CryptoModel::sort(int column, Qt::SortOrder order) {
     endInsertRows();
 }
 
-void CryptoModel::defaultSort() {
-    sort(m_sortColumn);
+void CryptoModel::addOrUpdate(const CryptoData &value) {
+    // comparing names and not id as coingecko API return 0 for all ids
+    auto it = std::find_if(m_cryptoDatas.begin(), m_cryptoDatas.end(), [&](const CryptoData &data) {return data.name == value.name; });
+
+    if (it != m_cryptoDatas.end()) {
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.image, ImageRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.ticker, TickerRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.currency, CurrencyRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.price, PriceRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.priceChangePercentage24h, PriceChangePercentage24hRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.priceChangePercentage1h, PriceChangePercentage1hRole);
+        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.rank, RankRole);
+    } else {
+        add(value);
+    }
 }
 
 void CryptoModel::add(const CryptoData cryptoData) {
