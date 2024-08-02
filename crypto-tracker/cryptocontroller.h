@@ -9,6 +9,7 @@
 class CryptoController : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool isStaleData READ isStaleData NOTIFY isStaleDataChanged)
+
 public:
     CryptoController(QObject *parent = nullptr);
     CryptoModel* cryptoModel();
@@ -32,4 +33,5 @@ private slots:
 signals:
     void errorMessageReceived(int errorCode, QString errorMessage);
     void isStaleDataChanged();
+    void updateStarted();
 };

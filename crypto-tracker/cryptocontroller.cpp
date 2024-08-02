@@ -43,6 +43,7 @@ void CryptoController::onErrorMessageReceived(int errorCode, QString errorMessag
             m_isStaleData = false;
             emit isStaleDataChanged();
         }
+        emit updateStarted();
     }
 }
 

@@ -8,4 +8,5 @@ QtObject {
     readonly property color lightBackground: "#c4f1be"
     readonly property color mediumBackground: "#a2c3a4"
     readonly property color highlight: "#525b76"
+    readonly property color overlay: "#4dffffff"
 }
