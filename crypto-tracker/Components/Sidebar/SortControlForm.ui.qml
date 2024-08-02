@@ -12,7 +12,7 @@ Item {
     property alias descendingButton: descendingButton
 
     id: root
-    height: 200
+    height: 400
     width: 160
 
     ColumnLayout {

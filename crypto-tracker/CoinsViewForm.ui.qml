@@ -1,6 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.12
 import QtQuick.Layouts 1.3
 import CustomColors 1.0
 import "Components/CryptoLabel"
@@ -9,7 +8,7 @@ Rectangle {
     id: root
 
     property alias model: repeater.model
-    property alias colorOverlay: colorOverlay
+    property alias repeater: repeater
 
     ScrollView {
         id: scrollView
@@ -37,13 +36,4 @@ Rectangle {
             }
         }
     }
-
-    ColorOverlay {
-        id: colorOverlay
-        anchors.fill: root
-        source: root
-        visible: false
-        color: Colors.overlay
-    }
-
 }

@@ -110,13 +110,15 @@ void CryptoModel::addOrUpdate(const CryptoData &value) {
     auto it = std::find_if(m_cryptoDatas.begin(), m_cryptoDatas.end(), [&](const CryptoData &data) {return data.name == value.name; });
 
     if (it != m_cryptoDatas.end()) {
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.image, ImageRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.ticker, TickerRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.currency, CurrencyRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.price, PriceRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.priceChangePercentage24h, PriceChangePercentage24hRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.priceChangePercentage1h, PriceChangePercentage1hRole);
-        setData(this->index(std::distance(m_cryptoDatas.begin(), it)), value.rank, RankRole);
+        int index = std::distance(m_cryptoDatas.begin(), it);
+        emit itemDataUpdateStarted(index);
+        setData(this->index(index), value.image, ImageRole);
+        setData(this->index(index), value.ticker, TickerRole);
+        setData(this->index(index), value.currency, CurrencyRole);
+        setData(this->index(index), value.price, PriceRole);
+        setData(this->index(index), value.priceChangePercentage24h, PriceChangePercentage24hRole);
+        setData(this->index(index), value.priceChangePercentage1h, PriceChangePercentage1hRole);
+        setData(this->index(index), value.rank, RankRole);
     } else {
         add(value);
     }

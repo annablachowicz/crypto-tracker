@@ -10,6 +10,20 @@ SidebarForm {
             networkErrorLabel.text = errorMessage
             networkErrorLabel.visible = errorCode !== 0
         }
+        function onUpdateStarted() {
+            loadingImage.visible = true
+            loadingAnimation.start()
+        }
+        function onUpdateFinished() {
+            loadingImage.visible = false
+            loadingAnimation.stop()
+        }
+    }
+
+    NumberAnimation on loadingImage.rotation {
+        id: loadingAnimation
+        from: 0
+        to: -360
     }
 
 }

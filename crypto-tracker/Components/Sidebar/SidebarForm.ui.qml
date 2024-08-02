@@ -7,6 +7,7 @@ Rectangle {
     property alias sortControl: sortControl
     property alias networkErrorLabel: networkErrorLabel
     property alias staleDataIndicator: staleDataIndicator
+    property alias loadingImage: loadingImage
 
     color: Colors.lightBackground
     width: 200
@@ -16,6 +17,7 @@ Rectangle {
         anchors.left: parent.left
         width: parent.width
         height: 400
+        spacing: 20
 
         SortControl {
             id: sortControl
@@ -33,6 +35,18 @@ Rectangle {
             Layout.leftMargin: 20
             Layout.rightMargin: 20
             wrapMode: Text.WordWrap
+        }
+
+        Item {
+            id: loadingImage
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Image {
+                anchors.centerIn: parent
+                height: 50
+                width: 50
+                source: "qrc:/resources/images/wait-loader-icon.svg"
+            }
         }
     }
 }

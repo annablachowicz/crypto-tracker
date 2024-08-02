@@ -8,7 +8,8 @@ CryptoController::CryptoController(QObject *parent)
     connect(&m_networkManager, &GeckoNetworkManager::errorMessageReceived, this, &CryptoController::errorMessageReceived);
     connect(&m_networkManager, &GeckoNetworkManager::errorMessageReceived, this, &CryptoController::onErrorMessageReceived);
     connect(&m_parser, &CryptoParser::dataRead, m_model.get(), &CryptoModel::addOrUpdate);
-    connect(&m_timer, &QTimer::timeout, &m_networkManager, &GeckoNetworkManager::getCoinData);
+    connect(&m_parser, &CryptoParser::dataRead, this, &CryptoController::updateFinished);
+    connect(&m_timer, &QTimer::timeout, this, &CryptoController::timerElapsed);
 
     m_networkManager.getCoinData();
     m_timer.start(3000);
@@ -30,17 +31,22 @@ void CryptoController::onNewDataReceived(QByteArray newData) {
     parseConcurrentRun(newData);
 }
 
-void CryptoController::onErrorMessageReceived(int errorCode, QString errorMessage) {
+void CryptoController::onErrorMessageReceived(int errorCode) {
     if (errorCode != 0) {
         if (!m_isStaleData) {
             m_isStaleData = true;
             emit isStaleDataChanged();
         }
+        emit updateFinished();
     } else {
         if (m_isStaleData) {
             m_isStaleData = false;
             emit isStaleDataChanged();
         }
-        emit updateStarted();
     }
+}
+
+void CryptoController::timerElapsed() {
+    m_networkManager.getCoinData();
+    emit updateStarted();
 }

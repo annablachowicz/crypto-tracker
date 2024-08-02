@@ -27,10 +27,12 @@ private:
 
 private slots:
     void onNewDataReceived(QByteArray newData);
-    void onErrorMessageReceived(int errorCode, QString errorMessage);
+    void onErrorMessageReceived(int errorCode);
+    void timerElapsed();
 
 signals:
     void errorMessageReceived(int errorCode, QString errorMessage);
     void isStaleDataChanged();
     void updateStarted();
+    void updateFinished();
 };

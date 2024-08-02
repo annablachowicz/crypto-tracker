@@ -1,11 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.12
+import CustomColors 1.0
 
 CutCornersRectangleWithBorder {
+    id: root
     property alias cryptoLogo: cryptoLogo.source
     property alias cryptoName: cryptoName.text
     property alias ticker: ticker.text
+    property alias animation: animation
     property string currency
     property double price
     property double change1h
@@ -74,4 +78,26 @@ CutCornersRectangleWithBorder {
         }
 
     }
+
+    ColorOverlay {
+        anchors.fill: root
+        source: root
+        color: "transparent"
+
+        SequentialAnimation on color {
+            id: animation
+            ColorAnimation {
+                to: Colors.overlay
+                duration: 250
+            }
+            ColorAnimation {
+                to: "transparent"
+                duration: 250
+            }
+        }
+
+
+    }
+
+
 }
