@@ -6,7 +6,7 @@ import CustomColors 1.0
 Rectangle {
     property alias sortControl: sortControl
     property alias networkErrorLabel: networkErrorLabel
-    property alias staleDataLabel: staleDataLabel
+    property alias staleDataIndicator: staleDataIndicator
 
     color: Colors.lightBackground
     width: 200
@@ -21,13 +21,13 @@ Rectangle {
             id: sortControl
         }
 
-        Label {
-            id: staleDataLabel
+        StaleDataIndicator {
+            id: staleDataIndicator
             Layout.fillWidth: true
             Layout.leftMargin: 20
-            text: qsTr("stale data")
-            color: "red"
-            font.capitalization: Font.AllUppercase
+//            text: qsTr("stale data")
+//            color: "red"
+//            font.capitalization: Font.AllUppercase
         }
 
         Label {
