@@ -8,6 +8,8 @@ Item {
     property alias priceButton: priceButton
     property alias change24hButton: change24hButton
     property alias nameButton: nameButton
+    property alias ascendingButton: ascendingButton
+    property alias descendingButton: descendingButton
 
     id: root
     height: 200
@@ -15,9 +17,17 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
+        spacing: 20
+
         Label {
             text: qsTr("Sort")
             Layout.leftMargin: 20
+        }
+
+        Rectangle {
+            width: parent.width
+            height: 2
+            color: Colors.mediumBackground
         }
 
         ColumnLayout {
@@ -37,6 +47,24 @@ Item {
             RadioButton {
                 id: nameButton
                 text: qsTr("name")
+            }
+        }
+
+        Rectangle {
+            width: parent.width
+            height: 2
+            color: Colors.mediumBackground
+        }
+
+        ColumnLayout {
+            RadioButton {
+                id: ascendingButton
+                text: qsTr("ascending")
+                checked: true
+            }
+            RadioButton {
+                id: descendingButton
+                text: qsTr("descending")
             }
         }
     }

@@ -73,31 +73,31 @@ bool CryptoModel::setData(const QModelIndex &index, const QVariant &value, int r
 }
 
 void CryptoModel::sort(int column, Qt::SortOrder order) {
-    if (m_sortColumn != column) {
-        m_sortColumn = column;
-    }
-
     beginInsertRows(QModelIndex(), 0, m_cryptoDatas.size()-1);
 
     switch (column) {
     case CryptoColumnIndices::NameColumn:
-        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [](const CryptoData& c1, const CryptoData& c2) {
-            return (c1.name < c2.name);
+        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [order](const CryptoData& c1, const CryptoData& c2) {
+            if (order == Qt::AscendingOrder) return (c1.name < c2.name);
+            return (c1.name > c2.name);
         });
         break;
     case CryptoColumnIndices::PriceColumn:
-        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [](const CryptoData& c1, const CryptoData& c2) {
-            return (c1.price < c2.price);
+        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [order](const CryptoData& c1, const CryptoData& c2) {
+            if (order == Qt::AscendingOrder) return (c1.price < c2.price);
+            return (c1.price > c2.price);
         });
         break;
     case CryptoColumnIndices::PriceChangePercentage24hColumn:
-        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [](const CryptoData& c1, const CryptoData& c2) {
-            return (c1.priceChangePercentage24h < c2.priceChangePercentage24h);
+        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [order](const CryptoData& c1, const CryptoData& c2) {
+            if (order == Qt::AscendingOrder) return (c1.priceChangePercentage24h < c2.priceChangePercentage24h);
+            return (c1.priceChangePercentage24h > c2.priceChangePercentage24h);
         });
         break;
     default:
-        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [](const CryptoData& c1, const CryptoData& c2) {
-            return (c1.rank < c2.rank);
+        std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [order](const CryptoData& c1, const CryptoData& c2) {
+            if (order == Qt::AscendingOrder) return (c1.rank < c2.rank);
+            return (c1.rank > c2.rank);
         });
         break;
     }

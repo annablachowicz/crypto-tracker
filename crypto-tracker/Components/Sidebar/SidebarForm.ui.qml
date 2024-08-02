@@ -25,9 +25,6 @@ Rectangle {
             id: staleDataIndicator
             Layout.fillWidth: true
             Layout.leftMargin: 20
-//            text: qsTr("stale data")
-//            color: "red"
-//            font.capitalization: Font.AllUppercase
         }
 
         Label {

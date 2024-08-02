@@ -50,7 +50,4 @@ public slots:
 protected:
     QHash<int, QByteArray> roleNames() const override;
     QList<CryptoData> m_cryptoDatas;
-
-private:
-    int m_sortColumn = CryptoColumnIndices::RankColumn;
 };

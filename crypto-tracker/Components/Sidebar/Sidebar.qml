@@ -1,7 +1,7 @@
 import QtQuick 2.15
 
 SidebarForm {
-    sortControl.onSortCoins: coinsView.model.sort(index)
+    sortControl.onSortCoins: coinsView.model.sort(index, order)
     staleDataIndicator.visible: cryptoController.isStaleData
 
     Connections {
