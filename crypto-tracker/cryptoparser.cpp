@@ -21,5 +21,4 @@ void CryptoParser::parseReply(QByteArray newData) {
                               value["market_cap_rank"].toInt());
         emit dataRead(cryptoData);
     }
-    emit parsingFinished();
 }

@@ -46,6 +46,7 @@ public:
 
 public slots:
     void addOrUpdate(const CryptoData &value);
+    void onChangeCryptoData(int index, float priceChange);
 
 protected:
     QHash<int, QByteArray> roleNames() const override;

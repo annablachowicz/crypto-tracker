@@ -14,5 +14,4 @@ public slots:
     void parseReply(QByteArray newData);
 signals:
     void dataRead(const CryptoData data);
-    void parsingFinished();
 };

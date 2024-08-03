@@ -9,7 +9,8 @@ SOURCES += \
         cryptomodel/cryptomodel.cpp \
         cryptoparser.cpp \
         geckonetworkmanager.cpp \
-        main.cpp
+        main.cpp \
+        randomchangesgenerator.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,4 +33,5 @@ HEADERS += \
     cryptomodel/cryptodata.h \
     cryptomodel/cryptomodel.h \
     cryptoparser.h \
-    geckonetworkmanager.h
+    geckonetworkmanager.h \
+    randomchangesgenerator.h

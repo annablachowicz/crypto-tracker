@@ -5,6 +5,7 @@
 #include "cryptoparser.h"
 #include "cryptomodel/cryptomodel.h"
 #include "geckonetworkmanager.h"
+#include "randomchangesgenerator.h"
 
 class CryptoController : public QObject {
     Q_OBJECT
@@ -13,6 +14,7 @@ class CryptoController : public QObject {
 public:
     CryptoController(QObject *parent = nullptr);
     CryptoModel* cryptoModel();
+    Q_INVOKABLE void makeRandomChanges(int startIndex, int endIndex);
 
     bool isStaleData();
 
@@ -20,6 +22,8 @@ private:
     CryptoParser m_parser;
     std::shared_ptr<CryptoModel> m_model;
     GeckoNetworkManager m_networkManager;
+    RandomChangesGenerator m_randomGenerator;
+
     QTimer m_timer;
     bool m_isStaleData = false;
 

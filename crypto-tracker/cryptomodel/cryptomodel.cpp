@@ -124,6 +124,16 @@ void CryptoModel::addOrUpdate(const CryptoData &value) {
     }
 }
 
+void CryptoModel::onChangeCryptoData(int index, float priceChange) {
+    float price = m_cryptoDatas[index].price;
+    if (price + priceChange < 0.f) {
+        price -= priceChange;
+    } else {
+        price += priceChange;
+    }
+    setData(this->index(index), priceChange, PriceRole);
+}
+
 void CryptoModel::add(const CryptoData cryptoData) {
     beginInsertRows(QModelIndex(), m_cryptoDatas.size(), m_cryptoDatas.size());
     m_cryptoDatas.push_back(cryptoData);
