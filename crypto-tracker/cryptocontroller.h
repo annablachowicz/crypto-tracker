@@ -14,7 +14,8 @@ class CryptoController : public QObject {
 public:
     CryptoController(QObject *parent = nullptr);
     CryptoModel* cryptoModel();
-    Q_INVOKABLE void makeRandomChanges(int startIndex, int endIndex);
+    Q_INVOKABLE void enableRandomChange(int startIndex, int endIndex);
+    Q_INVOKABLE void disableRandomChange();
 
     bool isStaleData();
 
@@ -39,4 +40,5 @@ signals:
     void isStaleDataChanged();
     void updateStarted();
     void updateFinished();
+    void changeCryptoData(int index, float priceChange);
 };

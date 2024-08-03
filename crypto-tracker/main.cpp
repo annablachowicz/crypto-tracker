@@ -10,12 +10,13 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
+    CryptoController controller;
+
     QQmlApplicationEngine engine;
     engine.addImportPath("qrc:/");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
-    CryptoController controller;
     qRegisterMetaType<CryptoData>();
 
     QQmlContext *context = engine.rootContext();
@@ -29,7 +30,6 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         }, Qt::QueuedConnection);
     engine.load(url);
-
 
     return app.exec();
 }

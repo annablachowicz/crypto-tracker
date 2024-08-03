@@ -6,7 +6,31 @@ CoinsViewForm {
     Connections {
         target: cryptoModel
         function onItemDataUpdateStarted(index) {
-            repeater.itemAt(index).animation.start();
+            if (listView.itemAtIndex(index) !== null)
+                listView.itemAtIndex(index).animation.start();
+        }
+    }
+
+    function getFirstVisibleIndex() {
+        var currentY = scrollBar.position / 1.0 * listView.contentHeight
+        return listView.indexAt(200, currentY)
+    }
+    function getLastVisibleIndex() {
+        var currentY = (scrollBar.position + scrollBar.size) / 1.0 * listView.contentHeight - 1
+        return listView.indexAt(200, currentY)
+    }
+
+    Connections {
+        target: cryptoController
+        function onChangeCryptoData(index, priceChange) {
+            var itemToChange = listView.itemAtIndex(index);
+            if (itemToChange !== null) {
+                if (itemToChange.price + priceChange >= 0) {
+                    itemToChange.price += priceChange
+                } else {
+                    itemToChange.price -= priceChange
+                }
+            }
         }
     }
 }

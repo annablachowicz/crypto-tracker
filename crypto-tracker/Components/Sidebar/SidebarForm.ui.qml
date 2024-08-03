@@ -8,6 +8,7 @@ Rectangle {
     property alias networkErrorLabel: networkErrorLabel
     property alias staleDataIndicator: staleDataIndicator
     property alias loadingImage: loadingImage
+    property alias randomChangesButton: randomChangesButton
 
     color: Colors.lightBackground
     width: 200
@@ -21,6 +22,27 @@ Rectangle {
 
         SortControl {
             id: sortControl
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 2
+            color: Colors.mediumBackground
+        }
+
+        Switch {
+            id: randomChangesButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: 40
+
+            text: qsTr("Random changes");
+            palette.windowText: Colors.shadow
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 2
+            color: Colors.mediumBackground
         }
 
         StaleDataIndicator {

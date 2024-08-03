@@ -7,33 +7,32 @@ import "Components/CryptoLabel"
 Rectangle {
     id: root
 
-    property alias model: repeater.model
-    property alias repeater: repeater
+    property alias model: listView.model
+    property alias listView: listView
+    property alias scrollBar: scrollBar
 
-    ScrollView {
-        id: scrollView
-        anchors.fill: parent
+    ListView {
+        id: listView
 
-        ScrollBar.vertical.policy: ScrollBar.AlwaysOn
-        contentHeight: columnLayout.height
-        clip: true
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 350
 
-        ColumnLayout {
-            id: columnLayout
-            width: root.width
+        boundsBehavior: Flickable.StopAtBounds
+        ScrollBar.vertical: ScrollBar {
+            id: scrollBar
+            policy: ScrollBar.AlwaysOff
+            active: ScrollBar.AlwaysOn
+        }
 
-            Repeater {
-                id: repeater
-                delegate: CryptoLabel {
-                    Layout.alignment: Qt.AlignHCenter
-                    cryptoLogo: model.image
-                    cryptoName: model.name
-                    ticker: model.ticker
-                    price: model.price
-                    change1h: model.priceChange1h
-                    change24h: model.priceChange24h
-                }
-            }
+        delegate: CryptoLabel {
+            cryptoLogo: model.image
+            cryptoName: model.name
+            ticker: model.ticker
+            price: model.price
+            change1h: model.priceChange1h
+            change24h: model.priceChange24h
         }
     }
 }

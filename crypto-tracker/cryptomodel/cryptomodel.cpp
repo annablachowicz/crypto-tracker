@@ -73,8 +73,6 @@ bool CryptoModel::setData(const QModelIndex &index, const QVariant &value, int r
 }
 
 void CryptoModel::sort(int column, Qt::SortOrder order) {
-    beginInsertRows(QModelIndex(), 0, m_cryptoDatas.size()-1);
-
     switch (column) {
     case CryptoColumnIndices::NameColumn:
         std::sort(m_cryptoDatas.begin(), m_cryptoDatas.end(), [order](const CryptoData& c1, const CryptoData& c2) {
@@ -102,7 +100,7 @@ void CryptoModel::sort(int column, Qt::SortOrder order) {
         break;
     }
 
-    endInsertRows();
+    emit dataChanged(this->index(0), this->index(m_cryptoDatas.count()-1));
 }
 
 void CryptoModel::addOrUpdate(const CryptoData &value) {
@@ -122,16 +120,6 @@ void CryptoModel::addOrUpdate(const CryptoData &value) {
     } else {
         add(value);
     }
-}
-
-void CryptoModel::onChangeCryptoData(int index, float priceChange) {
-    float price = m_cryptoDatas[index].price;
-    if (price + priceChange < 0.f) {
-        price -= priceChange;
-    } else {
-        price += priceChange;
-    }
-    setData(this->index(index), priceChange, PriceRole);
 }
 
 void CryptoModel::add(const CryptoData cryptoData) {
