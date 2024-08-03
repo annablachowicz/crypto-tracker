@@ -9,6 +9,7 @@ Item {
     property alias cryptoName: cryptoName.text
     property alias ticker: ticker.text
     property alias animation: animation
+    property color fontColor: Colors.almostWhite
     property string currency
     property double price
     property double change1h
@@ -48,10 +49,11 @@ Item {
 
                     Label {
                         id: cryptoName
+                        color: fontColor
                     }
                     Label {
                         id: ticker
-                        color: "grey"
+                        color: Colors.accent
                         font.capitalization: Font.AllUppercase
                     }
                 }
@@ -59,11 +61,13 @@ Item {
                 Label {
                     id: ranking
                     text: qsTr("Rank: ") + rank
+                    color: fontColor
                 }
 
                 Label {
                     id: currentPrice
                     text: qsTr("Current price: ") + price + (" ") + currency
+                    color: fontColor
                 }
 
                 Row {
@@ -71,8 +75,9 @@ Item {
                     spacing: 5
                     Label {
                         text: qsTr("1h:")
+                        color: fontColor
                     } Label {
-                        color: change1h === 0 ? "black" : change1h >= 0 ? "green" : "red"
+                        color: change1h === 0 ? fontColor : change1h >= 0 ? "green" : "red"
                         text: change1h.toFixed(2) + " %"
                     }
                 }
@@ -81,8 +86,9 @@ Item {
                     spacing: 5
                     Label {
                         text: qsTr("24h:")
+                        color: fontColor
                     } Label {
-                        color: change24h === 0 ? "black" : change24h >= 0 ? "green" : "red"
+                        color: change24h === 0 ? fontColor : change24h >= 0 ? "green" : "red"
                         text: change24h.toFixed(2) + " %"
                     }
                 }
@@ -90,6 +96,7 @@ Item {
                 Label {
                     id: lastUpdated
                     text: qsTr("Last update: ") + Qt.formatDateTime(lastUpdate, "dd.MM.yyyy hh:mm");
+                    color: fontColor
                 }
             }
         }

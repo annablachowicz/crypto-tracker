@@ -11,6 +11,8 @@ Rectangle {
     property alias listView: listView
     property alias scrollBar: scrollBar
 
+    color: Colors.darkBackground
+
     ListView {
         id: listView
 

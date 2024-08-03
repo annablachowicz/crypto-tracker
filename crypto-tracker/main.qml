@@ -7,7 +7,7 @@ Window {
     height: 960
     visible: true
     title: qsTr("Crypto Tracker")
-    color: Colors.almostWhite
+    color: Colors.shadow
 
     MainView {
         anchors.fill: parent

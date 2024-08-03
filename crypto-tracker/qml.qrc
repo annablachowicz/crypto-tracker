@@ -17,5 +17,6 @@
         <file>resources/images/wait-loader-icon.svg</file>
         <file>Components/Sidebar/StaleDataIndicator.qml</file>
         <file>Components/ErrorPopup.qml</file>
+        <file>Components/CustomRadioButton.qml</file>
     </qresource>
 </RCC>

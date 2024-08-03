@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import CustomColors 1.0
+import "../"
 
 Item {
     property alias rankingButton: rankingButton
@@ -13,7 +14,7 @@ Item {
 
     id: root
     height: 400
-    width: 160
+    width: 200
 
     ColumnLayout {
         anchors.fill: parent
@@ -22,47 +23,50 @@ Item {
         Label {
             text: qsTr("Sort")
             Layout.leftMargin: 20
+            Layout.topMargin: 10
+            Layout.alignment: Qt.AlignVCenter
+            color: Colors.almostWhite
         }
 
         Rectangle {
-            width: parent.width
-            height: 2
-            color: Colors.mediumBackground
+            Layout.fillWidth: true
+            height: 1
+            color: Colors.accent
         }
 
         ColumnLayout {
-            RadioButton {
+            CustomRadioButton {
                 id: rankingButton
                 text: qsTr("ranking")
                 checked: true
             }
-            RadioButton {
+            CustomRadioButton {
                 id: priceButton
                 text: qsTr("price")
             }
-            RadioButton {
+            CustomRadioButton {
                 id: change24hButton
                 text: qsTr("24 hour change")
             }
-            RadioButton {
+            CustomRadioButton {
                 id: nameButton
                 text: qsTr("name")
             }
         }
 
         Rectangle {
-            width: parent.width
-            height: 2
-            color: Colors.mediumBackground
+            Layout.fillWidth: true
+            height: 1
+            color: Colors.accent
         }
 
         ColumnLayout {
-            RadioButton {
+            CustomRadioButton {
                 id: ascendingButton
                 text: qsTr("ascending")
                 checked: true
             }
-            RadioButton {
+            CustomRadioButton {
                 id: descendingButton
                 text: qsTr("descending")
             }

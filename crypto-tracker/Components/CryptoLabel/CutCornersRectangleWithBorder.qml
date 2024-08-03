@@ -3,7 +3,7 @@ import CustomColors 1.0
 
 CutCornersRectangle {
     property color borderColor: Colors.mediumBackground
-    property color color: Colors.lightBackground
+    property color color: Colors.shadow
     fillColor: borderColor
 
     CutCornersRectangle {
