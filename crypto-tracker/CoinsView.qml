@@ -19,18 +19,4 @@ CoinsViewForm {
         var currentY = (scrollBar.position + scrollBar.size) / 1.0 * listView.contentHeight - 1
         return listView.indexAt(200, currentY)
     }
-
-    Connections {
-        target: cryptoController
-        function onChangeCryptoData(index, priceChange) {
-            var itemToChange = listView.itemAtIndex(index);
-            if (itemToChange !== null) {
-                if (itemToChange.price + priceChange >= 0) {
-                    itemToChange.price += priceChange
-                } else {
-                    itemToChange.price -= priceChange
-                }
-            }
-        }
-    }
 }

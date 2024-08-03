@@ -1,6 +1,10 @@
 #include <QtConcurrent>
 #include "cryptocontroller.h"
 
+namespace {
+const int updateIntervalMs = 3000;
+}
+
 CryptoController::CryptoController(QObject *parent)
     : QObject(parent),
     m_model(std::make_shared<CryptoModel>(this)) {
@@ -10,10 +14,10 @@ CryptoController::CryptoController(QObject *parent)
     connect(&m_parser, &CryptoParser::dataRead, m_model.get(), &CryptoModel::addOrUpdate);
     connect(&m_parser, &CryptoParser::dataRead, this, &CryptoController::updateFinished);
     connect(&m_timer, &QTimer::timeout, this, &CryptoController::timerElapsed);
-    connect(&m_randomGenerator, &RandomChangesGenerator::changeCryptoData, this, &CryptoController::changeCryptoData);
+    connect(&m_randomGenerator, &RandomChangesGenerator::changeCryptoData, m_model.get(), &CryptoModel::onChangePrice);
 
     m_networkManager.getCoinData();
-    m_timer.start(3000);
+    m_timer.start(updateIntervalMs);
 }
 
 CryptoModel *CryptoController::cryptoModel() {
@@ -26,7 +30,7 @@ void CryptoController::enableRandomChange(int startIndex, int endIndex) {
 }
 
 void CryptoController::disableRandomChange() {
-    m_timer.start(3000);
+    m_timer.start(updateIntervalMs);
 }
 
 bool CryptoController::isStaleData() {

@@ -40,5 +40,4 @@ signals:
     void isStaleDataChanged();
     void updateStarted();
     void updateFinished();
-    void changeCryptoData(int index, float priceChange);
 };

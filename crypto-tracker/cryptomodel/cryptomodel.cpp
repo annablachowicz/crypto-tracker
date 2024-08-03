@@ -41,37 +41,53 @@ bool CryptoModel::setData(const QModelIndex &index, const QVariant &value, int r
     CryptoData &cryptoData = m_cryptoDatas[index.row()];
     switch (role) {
     case ImageRole:
-        cryptoData.image = value.toString();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.image != value.toString()) {
+            cryptoData.image = value.toString();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case TickerRole:
-        cryptoData.ticker = value.toString();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.ticker != value.toString()) {
+            cryptoData.ticker = value.toString();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case CurrencyRole:
-        cryptoData.currency = value.toString();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.currency != value.toString()) {
+            cryptoData.currency = value.toString();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case PriceRole:
-        cryptoData.price = value.toFloat();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.price != value.toFloat()) {
+            cryptoData.price = value.toFloat();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case PriceChangePercentage24hRole:
-        cryptoData.priceChangePercentage24h = value.toFloat();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.priceChangePercentage24h != value.toFloat()) {
+            cryptoData.priceChangePercentage24h = value.toFloat();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case PriceChangePercentage1hRole:
-        cryptoData.priceChangePercentage1h = value.toFloat();
-        emit dataChanged(index, index);
-        return true;
+        if (cryptoData.priceChangePercentage1h != value.toFloat()) {
+            cryptoData.priceChangePercentage1h = value.toFloat();
+            emit dataChanged(index, index);
+            return true;
+        } return false;
     case RankRole:
-        cryptoData.rank = value.toFloat();
+        if (cryptoData.rank != value.toFloat()) {
+            cryptoData.rank = value.toFloat();
         emit dataChanged(index, index);
         return true;
+        } return false;
     case LastUpdateRole:
+        if (cryptoData.lastUpdate != value.toDateTime()) {
         cryptoData.lastUpdate = value.toDateTime();
         emit dataChanged(index, index);
         return true;
+        } return false;
     default:
         return false;
     }
@@ -154,4 +170,14 @@ QHash<int, QByteArray> CryptoModel::roleNames() const {
     roles[LastUpdateRole] = "lastUpdate";
 
     return roles;
+}
+
+void CryptoModel::onChangePrice(int index, float priceChange) {
+    float price = m_cryptoDatas[index].price;
+    if (price + priceChange < 0.f) {
+        price -= priceChange;
+    } else {
+        price += priceChange;
+    }
+    setData(this->index(index), price, PriceRole);
 }
