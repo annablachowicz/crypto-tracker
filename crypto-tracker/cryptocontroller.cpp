@@ -13,6 +13,7 @@ CryptoController::CryptoController(QObject *parent)
     connect(&m_networkManager, &GeckoNetworkManager::errorMessageReceived, this, &CryptoController::onErrorMessageReceived);
     connect(&m_parser, &CryptoParser::dataRead, m_model.get(), &CryptoModel::addOrUpdate);
     connect(&m_parser, &CryptoParser::dataRead, this, &CryptoController::updateFinished);
+    connect(&m_parser, &CryptoParser::dataReadFailed, this, &CryptoController::dataReadFailed);
     connect(&m_timer, &QTimer::timeout, this, &CryptoController::timerElapsed);
     connect(&m_randomGenerator, &RandomChangesGenerator::changeCryptoData, m_model.get(), &CryptoModel::onChangePrice);
 

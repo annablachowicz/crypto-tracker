@@ -16,5 +16,6 @@
         <file>resources/images/red-x-line-icon.svg</file>
         <file>resources/images/wait-loader-icon.svg</file>
         <file>Components/Sidebar/StaleDataIndicator.qml</file>
+        <file>Components/ErrorPopup.qml</file>
     </qresource>
 </RCC>

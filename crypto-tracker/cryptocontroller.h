@@ -40,4 +40,5 @@ signals:
     void isStaleDataChanged();
     void updateStarted();
     void updateFinished();
+    void dataReadFailed(QString errorMessage);
 };

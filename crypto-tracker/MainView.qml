@@ -18,4 +18,16 @@ Item {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
     }
+
+    ErrorPopup {
+        id: parseErrorPopup
+    }
+
+    Connections {
+        target: cryptoController
+        function onDataReadFailed(errorMessage) {
+            parseErrorPopup.errorLabel.text = errorMessage
+            parseErrorPopup.open()
+        }
+    }
 }
