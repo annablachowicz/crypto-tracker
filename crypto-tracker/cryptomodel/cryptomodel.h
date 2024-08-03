@@ -33,7 +33,8 @@ public:
         PriceRole,
         PriceChangePercentage24hRole,
         PriceChangePercentage1hRole,
-        RankRole
+        RankRole,
+        LastUpdateRole
     };
 
     CryptoModel(QObject *parent = nullptr);

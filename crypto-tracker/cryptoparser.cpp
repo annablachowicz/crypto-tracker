@@ -18,7 +18,8 @@ void CryptoParser::parseReply(QByteArray newData) {
                               value["price"].toDouble(),
                               value["price_change_percentage_24h"].toDouble(),
                               value["price_change_percentage_1h"].toDouble(),
-                              value["market_cap_rank"].toInt());
+                              value["market_cap_rank"].toInt(),
+                              value["last_updated"].toVariant().toDateTime());
         emit dataRead(cryptoData);
     }
 }

@@ -13,6 +13,8 @@ Item {
     property double price
     property double change1h
     property double change24h
+    property string rank
+    property string lastUpdate
 
     width: 350
     height: 160
@@ -30,16 +32,16 @@ Item {
                 id: cryptoLogo
                 anchors.left: parent.left
                 anchors.top: parent.top
-                anchors.leftMargin: parent.height * 0.2
+                anchors.leftMargin: parent.height * 0.15
                 anchors.topMargin: parent.height * 0.2
-                height: parent.height * 0.6
+                height: parent.height * 0.5
                 width: height
             }
 
             ColumnLayout {
                 anchors.left: cryptoLogo.right
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.leftMargin: parent.height * 0.2
+                anchors.leftMargin: parent.height * 0.15
 
                 Row {
                     spacing: 20
@@ -52,6 +54,11 @@ Item {
                         color: "grey"
                         font.capitalization: Font.AllUppercase
                     }
+                }
+
+                Label {
+                    id: ranking
+                    text: qsTr("Rank: ") + rank
                 }
 
                 Label {
@@ -78,6 +85,11 @@ Item {
                         color: change24h === 0 ? "black" : change24h >= 0 ? "green" : "red"
                         text: change24h.toFixed(2) + " %"
                     }
+                }
+
+                Label {
+                    id: lastUpdated
+                    text: qsTr("Last update: ") + Qt.formatDateTime(lastUpdate, "dd.MM.yyyy hh:mm");
                 }
             }
         }

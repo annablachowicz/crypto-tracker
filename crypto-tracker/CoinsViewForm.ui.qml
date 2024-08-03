@@ -33,6 +33,8 @@ Rectangle {
             price: model.price
             change1h: model.priceChange1h
             change24h: model.priceChange24h
+            rank: model.rank
+            lastUpdate: model.lastUpdate
         }
     }
 }

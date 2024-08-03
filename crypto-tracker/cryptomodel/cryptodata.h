@@ -1,5 +1,6 @@
 #pragma once
 #include <QObject>
+#include <QDateTime>
 
 class CryptoData {
 public:
@@ -10,7 +11,8 @@ public:
                float _price,
                float _priceChangePercentage24h,
                float _priceChangePercentage1h,
-               int _rank)
+               int _rank,
+               QDateTime _lastUpdate)
         : name(std::move(_name)),
         image(std::move(_image)),
         ticker(std::move(_ticker)),
@@ -18,7 +20,8 @@ public:
         price(std::move(_price)),
         priceChangePercentage24h(std::move(_priceChangePercentage24h)),
         priceChangePercentage1h(std::move(_priceChangePercentage1h)),
-        rank(_rank) {}
+        rank(std::move(_rank)),
+        lastUpdate(std::move(_lastUpdate)) {}
 
     CryptoData() {}
 
@@ -30,5 +33,6 @@ public:
     float priceChangePercentage24h;
     float priceChangePercentage1h;
     int rank;
+    QDateTime lastUpdate;
 };
 Q_DECLARE_METATYPE(CryptoData);

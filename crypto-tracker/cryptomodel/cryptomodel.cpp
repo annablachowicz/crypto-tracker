@@ -30,6 +30,8 @@ QVariant CryptoModel::data(const QModelIndex &index, int role) const {
         return cryptoData.priceChangePercentage1h;
     case RankRole:
         return cryptoData.rank;
+    case LastUpdateRole:
+        return cryptoData.lastUpdate;
     default:
         return {};
     }
@@ -64,6 +66,10 @@ bool CryptoModel::setData(const QModelIndex &index, const QVariant &value, int r
         return true;
     case RankRole:
         cryptoData.rank = value.toFloat();
+        emit dataChanged(index, index);
+        return true;
+    case LastUpdateRole:
+        cryptoData.lastUpdate = value.toDateTime();
         emit dataChanged(index, index);
         return true;
     default:
@@ -117,6 +123,7 @@ void CryptoModel::addOrUpdate(const CryptoData &value) {
         setData(this->index(index), value.priceChangePercentage24h, PriceChangePercentage24hRole);
         setData(this->index(index), value.priceChangePercentage1h, PriceChangePercentage1hRole);
         setData(this->index(index), value.rank, RankRole);
+        setData(this->index(index), value.lastUpdate, LastUpdateRole);
     } else {
         add(value);
     }
@@ -144,6 +151,7 @@ QHash<int, QByteArray> CryptoModel::roleNames() const {
     roles[PriceChangePercentage24hRole] = "priceChange24h";
     roles[PriceChangePercentage1hRole] = "priceChange1h";
     roles[RankRole] = "rank";
+    roles[LastUpdateRole] = "lastUpdate";
 
     return roles;
 }
