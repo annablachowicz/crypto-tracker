@@ -5,17 +5,12 @@
 #include "cryptodata.h"
 #include "randomchangesgenerator.h"
 
-//todo wywalić to i używać CryptoRoles
 namespace CryptoColumnIndices {
 Q_NAMESPACE
 enum CryptoColumnIndices {
     NameColumn,
-    ImageColumn,
-    TickerColumn,
-    CurrencyColumn,
     PriceColumn,
     PriceChangePercentage24hColumn,
-    PriceChangePercentage1hColumn,
     RankColumn
 };
 Q_ENUMS(CryptoColumnIndices)
