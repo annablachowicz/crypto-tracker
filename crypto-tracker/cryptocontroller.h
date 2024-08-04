@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QThread>
 #include <QTimer>
 #include "cryptoparser.h"
 #include "cryptomodel/cryptomodel.h"
@@ -13,6 +14,7 @@ class CryptoController : public QObject {
 
 public:
     CryptoController(QObject *parent = nullptr);
+    ~CryptoController();
     CryptoModel* cryptoModel();
     Q_INVOKABLE void enableRandomChange(int startIndex, int endIndex);
     Q_INVOKABLE void disableRandomChange();
@@ -24,7 +26,7 @@ private:
     std::shared_ptr<CryptoModel> m_model;
     GeckoNetworkManager m_networkManager;
     RandomChangesGenerator m_randomGenerator;
-
+    std::unique_ptr<QThread> m_thread;
     QTimer m_timer;
     bool m_isStaleData = false;
 

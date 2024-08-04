@@ -1,5 +1,4 @@
 #include "geckonetworkmanager.h"
-#include <QNetworkReply>
 #include <QUrlQuery>
 
 constexpr const char* geckoApiKey = "CG-T1xp7PtrAKvWJd8L5PEY74WD";

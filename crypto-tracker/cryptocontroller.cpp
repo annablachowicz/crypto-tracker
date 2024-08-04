@@ -17,8 +17,18 @@ CryptoController::CryptoController(QObject *parent)
     connect(&m_timer, &QTimer::timeout, this, &CryptoController::timerElapsed);
     connect(&m_randomGenerator, &RandomChangesGenerator::changeCryptoData, m_model.get(), &CryptoModel::onChangePrice);
 
+    m_thread = std::make_unique<QThread>();
+    m_networkManager.moveToThread(m_thread.get());
+    m_thread->start();
+
     m_networkManager.getCoinData();
     m_timer.start(updateIntervalMs);
+}
+
+CryptoController::~CryptoController() {
+    m_thread->exit();
+    m_thread->wait();
+    m_thread->deleteLater();
 }
 
 CryptoModel *CryptoController::cryptoModel() {

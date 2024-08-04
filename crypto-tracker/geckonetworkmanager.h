@@ -1,7 +1,7 @@
 #pragma once
+#include <QObject>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-#include <QObject>
 
 class GeckoNetworkManager : public QObject {
     Q_OBJECT

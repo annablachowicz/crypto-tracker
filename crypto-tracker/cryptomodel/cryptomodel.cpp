@@ -1,5 +1,4 @@
 #include "cryptomodel.h"
-#include <QDebug>
 
 CryptoModel::CryptoModel(QObject *parent)
     : QAbstractListModel(parent) {}
