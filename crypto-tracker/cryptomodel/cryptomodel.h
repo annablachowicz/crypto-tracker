@@ -3,6 +3,7 @@
 #include <QAbstractListModel>
 
 #include "cryptodata.h"
+#include "randomchangesgenerator.h"
 
 //todo wywalić to i używać CryptoRoles
 namespace CryptoColumnIndices {
@@ -47,7 +48,7 @@ public:
 
 public slots:
     void addOrUpdate(const CryptoData &value);
-    void onChangePrice(int index, float priceChange);
+    void onChangePrice(int index, ChangeType changeType);
 
 protected:
     QHash<int, QByteArray> roleNames() const override;

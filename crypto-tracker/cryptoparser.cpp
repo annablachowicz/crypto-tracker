@@ -15,7 +15,7 @@ void CryptoParser::parseReply(QByteArray newData) {
                                   value["image"].toString(),
                                   value["symbol"].toString(),
                                   currency,
-                                  value["price"].toDouble(),
+                                  value["current_price"].toDouble(),
                                   value["price_change_percentage_24h"].toDouble(),
                                   value["price_change_percentage_1h"].toDouble(),
                                   value["market_cap_rank"].toInt(),

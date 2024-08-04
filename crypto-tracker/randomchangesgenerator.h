@@ -2,6 +2,11 @@
 
 #include <QObject>
 
+enum ChangeType {
+    Increase,
+    Decrease
+};
+
 class RandomChangesGenerator : public QObject {
     Q_OBJECT
 public:
@@ -10,8 +15,8 @@ public:
 
 private:
     int getRandomIndex(int startIndex, int endIndex, int excludedIndex = -1);
-    float changePrice();
+    ChangeType changePrice();
 
 signals:
-    void changeCryptoData(int index, float priceChange);
+    void changeCryptoData(int index, ChangeType changeType);
 };

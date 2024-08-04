@@ -37,6 +37,7 @@ Rectangle {
             change24h: model.priceChange24h
             rank: model.rank
             lastUpdate: model.lastUpdate
+            currency: model.currency
         }
     }
 }

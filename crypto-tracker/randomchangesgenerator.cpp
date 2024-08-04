@@ -1,11 +1,6 @@
 #include "randomchangesgenerator.h"
 #include <QRandomGenerator>
 
-enum ChangeDirection {
-    Increase,
-    Decrease
-};
-
 RandomChangesGenerator::RandomChangesGenerator(QObject *parent)
     : QObject(parent) {}
 
@@ -34,10 +29,7 @@ int RandomChangesGenerator::getRandomIndex(int startIndex, int endIndex, int exc
     }
 }
 
-float RandomChangesGenerator::changePrice() {
-    int changeDirection = QRandomGenerator::global()->bounded(Increase, Decrease);
-
-    if (changeDirection == Increase) {
-        return 2;
-    } return - 2;
+ChangeType RandomChangesGenerator::changePrice() {
+    int changeDirection = QRandomGenerator::global()->bounded(Increase, Decrease + 1);
+    return ChangeType(changeDirection);
 }

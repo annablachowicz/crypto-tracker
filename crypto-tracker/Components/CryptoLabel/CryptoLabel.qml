@@ -66,7 +66,7 @@ Item {
 
                 Label {
                     id: currentPrice
-                    text: qsTr("Current price: ") + price + (" ") + currency
+                    text: qsTr("Current price: ") + price.toFixed(2) + (" ") + currency
                     color: fontColor
                 }
 

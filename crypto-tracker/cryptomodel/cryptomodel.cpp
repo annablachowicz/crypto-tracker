@@ -172,12 +172,11 @@ QHash<int, QByteArray> CryptoModel::roleNames() const {
     return roles;
 }
 
-void CryptoModel::onChangePrice(int index, float priceChange) {
+void CryptoModel::onChangePrice(int index, ChangeType changeType) {
     float price = m_cryptoDatas[index].price;
-    if (price + priceChange < 0.f) {
-        price -= priceChange;
+    if (changeType == Increase) {
+        setData(this->index(index), 1.02f * price, PriceRole);
     } else {
-        price += priceChange;
+        setData(this->index(index), 0.98f * price, PriceRole);
     }
-    setData(this->index(index), price, PriceRole);
 }
